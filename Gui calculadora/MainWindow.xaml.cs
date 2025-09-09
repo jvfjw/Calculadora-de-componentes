@@ -11,6 +11,8 @@ using System.Windows.Shapes;
 using System;
 using Calculadora_de_componentes;
 using Gui_calculadora.Back;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 namespace Gui_calculadora;
 
 /// <summary>
@@ -21,13 +23,12 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        this.DataContext = new Repositorioplacas();
+        this.DataContext = new MainViewModel();
     }
 
     //PROPRIEDADES  
 
 
- 
 
 
     private void Button_Click(object sender, RoutedEventArgs e)
@@ -36,30 +37,63 @@ public partial class MainWindow : Window
             Lista.Visibility = Visibility.Visible;
         else
             Lista.Visibility = Visibility.Hidden;
-    }
-
-
-    private void MenuItem_Click(object sender, RoutedEventArgs e)
-    {
         
     }
+
+
 
     private void MenuItem_Click_1(object sender, RoutedEventArgs e)
     {
         if (sender is MenuItem item && item.DataContext is Placa placa)
         {
-            opcao.Header = placa.Nome;
+      
         }
     }
 
+    public class MainViewModel : INotifyPropertyChanged
+    {
+        private int _fatorGlobal = 1;
+        private Placa? _placaSelecionada;
 
+        public ObservableCollection<Placa> Placas { get; }
 
+        public Placa? PlacaSelecionada
+        {
+            get => _placaSelecionada;
+            set
+            {
+                _placaSelecionada = value;
+                OnPropertyChanged(nameof(PlacaSelecionada));
 
+                // Quando muda a placa, aplica o fator global nela também
+                if (_placaSelecionada != null)
+                    _placaSelecionada.FatorGlobal = FatorGlobal;
+            }
+        }
 
+        public int FatorGlobal
+        {
+            get => _fatorGlobal;
+            set
+            {
+                _fatorGlobal = value;
+                OnPropertyChanged(nameof(FatorGlobal));
 
+                if (PlacaSelecionada != null)
+                    PlacaSelecionada.FatorGlobal = value;
+            }
+        }
 
+        public MainViewModel()
+        {
+            var repo = new Repositorioplacas();
+            Placas = repo.Placas;
+        }
 
-
+        public event PropertyChangedEventHandler? PropertyChanged;
+        private void OnPropertyChanged(string name) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    }
 
 
 

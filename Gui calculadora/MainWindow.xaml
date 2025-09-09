@@ -30,7 +30,13 @@
                 <TextBlock Text="Calculadora Componentes" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0"/>
                 
                 <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
-                    <Menu Grid.Row="1" Width="250" Height="70" Margin="10">
+
+
+                    <ComboBox ItemsSource="{Binding Placas}" 
+                  SelectedItem="{Binding PlacaSelecionada}"
+                  DisplayMemberPath="Nome"
+                  Width="250" Height="70" Margin="10"/>
+                    <!-- <Menu Grid.Row="1" Width="250" Height="70" Margin="10">
                         <MenuItem x:Name="opcao" ItemsSource="{Binding Placas}" Header="{Binding NomePlaca}" FontSize="20" Width="250" Height="70">
                             <MenuItem.ItemTemplate>
                                 <DataTemplate x:Name="templateplaca">
@@ -45,7 +51,7 @@
                             </MenuItem.ItemContainerStyle>
                         </MenuItem>
                     </Menu>
-
+-->
                     <!--
                     <Menu x:Name="selecaoPlaca"  Grid.Row="1" Width="250" Height="70" HorizontalAlignment="Left" Margin="10">
                     <MenuItem x:Name="opcao" Header="{Binding Escolha}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="70" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="opcao_Click_1">
@@ -61,7 +67,7 @@
                 </Menu>
                 -->
                     <Button Width="80" Height="40" Margin="10" Click="Button_Click"/>
-                    <TextBox Grid.Row="1" Name="InputQuantidade" HorizontalAlignment="Right" Height="70" Width="250" Background="Transparent" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <TextBox Grid.Row="1" Name="InputQuantidade" Text="{Binding FatorGlobal, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Height="70" Width="250" Background="Transparent" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                 </StackPanel>
                  
             </Grid>
@@ -73,24 +79,17 @@
         
         </Grid>
 
-        
-        <ListBox x:Name="Lista" ItemsSource="{Binding Placas}" Grid.Column="1">
+
+        <ListBox x:Name="Lista" ItemsSource="{Binding PlacaSelecionada.Componentes}" Grid.Column="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Margin="5">
                         <TextBlock Text="{Binding Nome}" FontWeight="Bold"/>
-
-                        <ItemsControl ItemsSource="{Binding Componentes}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Nome}" Margin="0,0,10,0"/>
-                                        <TextBlock Text="{Binding Quantidade}" Margin="0,0,10,0"/>
-                                        <TextBlock Text="{Binding Posicao}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Quantidade}" Margin="0,0,10,0"/>
+                            <TextBlock Text="{Binding QuantidadeFinal}" Margin="0,0,10,0"/>
+                            <TextBlock Text="{Binding Posicao}"/>
+                        </StackPanel>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
