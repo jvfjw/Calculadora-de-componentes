@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <RootNamespace>Gui_calculadora</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <NuGetAuditMode>direct</NuGetAuditMode>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Calculadora de componentes\Calculadora de componentes.csproj" />
+  </ItemGroup>
+
+</Project>
