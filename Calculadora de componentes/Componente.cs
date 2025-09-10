@@ -15,18 +15,24 @@ namespace Calculadora_de_componentes
 
         public string? Nome
         {
-            get => _nome;
+            get 
+            { 
+                return _nome; 
+            }
             set { _nome = value; OnPropertyChanged(nameof(Nome)); }
         }
 
         public int Quantidade
         {
-            get => _quantidade;
+            get 
+            { 
+                return _quantidade; 
+            }
             set
             {
                 _quantidade = value;
                 OnPropertyChanged(nameof(Quantidade));
-                OnPropertyChanged(nameof(QuantidadeFinal)); // atualizar também
+                OnPropertyChanged(nameof(QuantidadeFinal)); 
             }
         }
 
@@ -35,7 +41,10 @@ namespace Calculadora_de_componentes
 
         public int Fator
         {
-            get => _fator;
+            get 
+            { 
+                return _fator; 
+            }
             set
             {
                 _fator = value;
@@ -44,7 +53,7 @@ namespace Calculadora_de_componentes
             }
         }
 
-        public int QuantidadeFinal => Quantidade * Fator;
+        public int QuantidadeFinal { get { return Quantidade * Fator; } }
 
         public override string ToString()
         {

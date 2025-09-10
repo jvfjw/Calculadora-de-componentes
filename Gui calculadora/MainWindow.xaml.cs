@@ -65,7 +65,7 @@ public partial class MainWindow : Window
                 _placaSelecionada = value;
                 OnPropertyChanged(nameof(PlacaSelecionada));
 
-                // Quando muda a placa, aplica o fator global nela também
+                
                 if (_placaSelecionada != null)
                     _placaSelecionada.FatorGlobal = FatorGlobal;
             }
