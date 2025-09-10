@@ -28,6 +28,9 @@
                 </Grid.RowDefinitions>
       
                 <TextBlock Text="Calculadora Componentes" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0"/>
+                <TextBlock Text="Selecione a PLACA" FontSize="20" HorizontalAlignment="left" VerticalAlignment="Bottom" Grid.Row="0" Margin="125,0,0,0"/>
+                <TextBlock Text="Quantidade" FontSize="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="0" Margin="0,0,160,0"/>
+                
                 
                 <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
 
@@ -35,45 +38,16 @@
                     <ComboBox ItemsSource="{Binding Placas}" 
                   SelectedItem="{Binding PlacaSelecionada}"
                   DisplayMemberPath="Nome"
-                  Width="250" Height="70" Margin="10"/>
-                    <!-- <Menu Grid.Row="1" Width="250" Height="70" Margin="10">
-                        <MenuItem x:Name="opcao" ItemsSource="{Binding Placas}" Header="{Binding NomePlaca}" FontSize="20" Width="250" Height="70">
-                            <MenuItem.ItemTemplate>
-                                <DataTemplate x:Name="templateplaca">
-                                    <TextBlock Text="{Binding Nome}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Width="250" Height="70"/>
-                                </DataTemplate>
-                            </MenuItem.ItemTemplate>
-
-                            <MenuItem.ItemContainerStyle>
-                                <Style TargetType="MenuItem">
-                                    <EventSetter Event="Click" Handler="MenuItem_Click_1"/>
-                                </Style>
-                            </MenuItem.ItemContainerStyle>
-                        </MenuItem>
-                    </Menu>
--->
-                    <!--
-                    <Menu x:Name="selecaoPlaca"  Grid.Row="1" Width="250" Height="70" HorizontalAlignment="Left" Margin="10">
-                    <MenuItem x:Name="opcao" Header="{Binding Escolha}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="70" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="opcao_Click_1">
-                        <MenuItem Header="Dy8rl 8 Relés" Click="MenuItem_Click"/>
-                        <MenuItem Header="Dy8rl 7 Relés" Click="MenuItem_Click_1"/>
-                        <MenuItem Header="Dy8rl 6 Relés" Click="MenuItem_Click_2"/>
-                        <MenuItem Header="Dy8rl 5 Relés" Click="MenuItem_Click_3"/>
-                        <MenuItem Header="Dy8rl 4 Relés" Click="MenuItem_Click_4"/>
-                        <MenuItem Header="Dy8rl 3 Relés" Click="MenuItem_Click_5"/>
-                        <MenuItem Header="Dy8rl 2 Relés" Click="MenuItem_Click_6"/>
-                        <MenuItem Header="Dy8rl 1 Relés" Click="MenuItem_Click_7"/>
-                        </MenuItem>
-                </Menu>
-                -->
-                    <Button Width="80" Height="40" Margin="10" Click="Button_Click"/>
+                  Width="250" Height="70" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                   
+                    
                     <TextBox Grid.Row="1" Name="InputQuantidade" Text="{Binding FatorGlobal, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Height="70" Width="250" Background="Transparent" Margin="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
                 </StackPanel>
                  
             </Grid>
             
             <Grid Grid.Row="1" Background="Green">
-                
+                <Button Content="Imprimir" FontSize="40" Click="Button_Click_1"/>
             </Grid>
         
         
@@ -86,9 +60,11 @@
                     <StackPanel Margin="5">
                         <TextBlock Text="{Binding Nome}" FontWeight="Bold"/>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Quantidade}" Margin="0,0,10,0"/>
+                            <!-- <TextBlock Text="{Binding Quantidade}" Margin="0,0,10,0"/>-->
+                            <TextBlock Text=" Quantidade:" Margin="0,0,10,0"/>
                             <TextBlock Text="{Binding QuantidadeFinal}" Margin="0,0,10,0"/>
-                            <TextBlock Text="{Binding Posicao}"/>
+                            <TextBlock Text=" Posição:" Margin="0,0,10,0"/>
+                            <TextBlock Text="{Binding posicao}" Margin="0,0,10,0"/>
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>
@@ -96,44 +72,8 @@
         </ListBox>
     
     
-        <!--
-        <ListBox Grid.Column="1" ItemsSource="{Binding PlacaSelecionada.Componentes}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Nome}"/>
-                        <TextBlock Text=" - "/>
-                        <TextBlock Text="{Binding Quantidade}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-            
-        </ListBox>
-        -->
+      
 
 
-
-
-
-        <!--        EXIBIR COMPONENTES ORIGINAL
-        <Grid Grid.Column="1" Background="White">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <TextBlock Margin="10" Name="Caixa1" Height="70" Grid.Row="0" Text="{Binding Resistor1k}"/>
-            <TextBlock Margin="10" Name="Caixa2" Height="70" Grid.Row="1" Text="{Binding Diodo1n4007}"/>
-            <TextBlock Margin="10" Name="Caixa3" Height="70" Grid.Row="2" Text="{Binding LedVerde3mm}"/>
-            <TextBlock Margin="10" Name="Caixa4" Height="70" Grid.Row="3" Text="{Binding ReleSRD05VDC}"/>
-            <TextBlock Margin="10" Name="Caixa5" Height="70" Grid.Row="4" Text="{Binding }"/>
-            <TextBlock Margin="10" Name="Caixa6" Height="70" Grid.Row="5" Text="{Binding }"/>
-            
-            
-
-        </Grid>-->
     </Grid>
 </Window>
